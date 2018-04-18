@@ -1,0 +1,205 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://icon.png" type="Texture" id=1]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 10, 10 )
+
+[node name="World" type="Node2D" index="0"]
+
+[node name="Pipe_Pair" type="Node2D" parent="." index="0"]
+
+editor/display_folded = true
+position = Vector2( 318, 571.691 )
+scale = Vector2( 1, 0.978401 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Pipe_Top" type="StaticBody2D" parent="Pipe_Pair" index="0"]
+
+position = Vector2( 0, -638 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="Sprite" type="Sprite" parent="Pipe_Pair/Pipe_Top" index="0"]
+
+scale = Vector2( 1.7033, 7.01067 )
+texture = ExtResource( 1 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pipe_Pair/Pipe_Top" index="1"]
+
+position = Vector2( -0.552401, -2.19661 )
+scale = Vector2( 4.18576, 21.2428 )
+shape = SubResource( 1 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Pipe_Bot" type="StaticBody2D" parent="Pipe_Pair" index="1"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="Sprite" type="Sprite" parent="Pipe_Pair/Pipe_Bot" index="0"]
+
+scale = Vector2( 1.7033, 7.01067 )
+texture = ExtResource( 1 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pipe_Pair/Pipe_Bot" index="1"]
+
+position = Vector2( -0.552401, -2.19661 )
+scale = Vector2( 4.18576, 21.2428 )
+shape = SubResource( 1 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Pipe_Pair2" type="Node2D" parent="." index="1"]
+
+editor/display_folded = true
+position = Vector2( 579, 655.691 )
+scale = Vector2( 1, 0.978401 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Pipe_Top" type="StaticBody2D" parent="Pipe_Pair2" index="0"]
+
+position = Vector2( 0, -638 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="Sprite" type="Sprite" parent="Pipe_Pair2/Pipe_Top" index="0"]
+
+scale = Vector2( 1.7033, 7.01067 )
+texture = ExtResource( 1 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pipe_Pair2/Pipe_Top" index="1"]
+
+position = Vector2( -0.552401, -2.19661 )
+scale = Vector2( 4.18576, 21.2428 )
+shape = SubResource( 1 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Pipe_Bot" type="StaticBody2D" parent="Pipe_Pair2" index="1"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="Sprite" type="Sprite" parent="Pipe_Pair2/Pipe_Bot" index="0"]
+
+scale = Vector2( 1.7033, 7.01067 )
+texture = ExtResource( 1 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pipe_Pair2/Pipe_Bot" index="1"]
+
+position = Vector2( -0.552401, -2.19661 )
+scale = Vector2( 4.18576, 21.2428 )
+shape = SubResource( 1 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Pipe_Pair3" type="Node2D" parent="." index="2"]
+
+editor/display_folded = true
+position = Vector2( 835, 604.691 )
+scale = Vector2( 1, 0.978401 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Pipe_Top" type="StaticBody2D" parent="Pipe_Pair3" index="0"]
+
+position = Vector2( 0, -638 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="Sprite" type="Sprite" parent="Pipe_Pair3/Pipe_Top" index="0"]
+
+scale = Vector2( 1.7033, 7.01067 )
+texture = ExtResource( 1 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pipe_Pair3/Pipe_Top" index="1"]
+
+position = Vector2( -0.552401, -2.19661 )
+scale = Vector2( 4.18576, 21.2428 )
+shape = SubResource( 1 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Pipe_Bot" type="StaticBody2D" parent="Pipe_Pair3" index="1"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="Sprite" type="Sprite" parent="Pipe_Pair3/Pipe_Bot" index="0"]
+
+scale = Vector2( 1.7033, 7.01067 )
+texture = ExtResource( 1 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pipe_Pair3/Pipe_Bot" index="1"]
+
+position = Vector2( -0.552401, -2.19661 )
+scale = Vector2( 4.18576, 21.2428 )
+shape = SubResource( 1 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." index="3"]
+
+layer = -1
+offset = Vector2( 0, 0 )
+rotation = 0.0
+scale = Vector2( 1, 1 )
+transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 1019.0
+margin_bottom = 602.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+expand = true
+stretch_mode = 0
+
+
