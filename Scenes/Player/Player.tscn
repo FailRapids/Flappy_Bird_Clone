@@ -1,0 +1,155 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Player/body.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Player/wing.png" type="Texture" id=3]
+
+[sub_resource type="Animation" id=1]
+
+resource_name = "Falling"
+length = 1.0
+loop = false
+step = 0.1
+
+[sub_resource type="Animation" id=2]
+
+resource_name = "Flap"
+length = 1.0
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("BodyPivot:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, -15.8914, 0.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("BodyPivot/WingPivot:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( -0.0282413, -5.60096 ), Vector2( 0, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("BodyPivot/WingPivot:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1, 0.439897 ), Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+
+resource_name = "Idle"
+length = 1.0
+loop = false
+step = 0.1
+
+[sub_resource type="RectangleShape2D" id=4]
+
+custom_solver_bias = 0.0
+extents = Vector2( 22.734, 14.4303 )
+
+[node name="Player" type="KinematicBody2D"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+collision/safe_margin = 0.08
+script = ExtResource( 1 )
+Force_Grav = Vector2( 0, 900 )
+Jump_Speed = 480
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="0"]
+
+root_node = NodePath("..")
+autoplay = ""
+playback_process_mode = 1
+playback_default_blend_time = 0.0
+playback_speed = 1.0
+anims/Falling = SubResource( 1 )
+anims/Flap = SubResource( 2 )
+anims/Idle = SubResource( 3 )
+blend_times = [  ]
+
+[node name="Tween" type="Tween" parent="." index="1"]
+
+repeat = false
+playback_process_mode = 1
+playback_speed = 1.0
+playback/active = false
+playback/repeat = false
+playback/speed = 1.0
+
+[node name="BodyPivot" type="Position2D" parent="." index="2"]
+
+_sections_unfolded = [ "Transform", "Z Index" ]
+
+[node name="Body" type="Sprite" parent="BodyPivot" index="0"]
+
+position = Vector2( 0, 0.0438387 )
+scale = Vector2( 1, 0.327698 )
+texture = ExtResource( 2 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="WingPivot" type="Position2D" parent="BodyPivot" index="1"]
+
+rotation = -0.00504218
+_sections_unfolded = [ "Transform", "Z Index" ]
+
+[node name="Wing" type="Sprite" parent="BodyPivot/WingPivot" index="0"]
+
+position = Vector2( 0, 10 )
+scale = Vector2( 0.532676, 0.426353 )
+texture = ExtResource( 3 )
+_sections_unfolded = [ "Transform", "Visibility" ]
+
+[node name="CamPivot" type="Position2D" parent="." index="3"]
+
+[node name="Camera2D" type="Camera2D" parent="CamPivot" index="0"]
+
+anchor_mode = 1
+rotating = false
+current = true
+zoom = Vector2( 1, 1 )
+limit_left = -10000000
+limit_top = -10000000
+limit_right = 10000000
+limit_bottom = 10000000
+limit_smoothed = false
+drag_margin_h_enabled = true
+drag_margin_v_enabled = true
+smoothing_enabled = false
+smoothing_speed = 5.0
+offset_v = 0.0
+offset_h = 0.0
+drag_margin_left = 0.2
+drag_margin_top = 0.2
+drag_margin_right = 0.2
+drag_margin_bottom = 0.2
+editor_draw_screen = true
+editor_draw_limits = false
+editor_draw_drag_margin = true
+_sections_unfolded = [ "Editor" ]
+
+[node name="Collision" type="CollisionShape2D" parent="." index="4"]
+
+shape = SubResource( 4 )
+
+
