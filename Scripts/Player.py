@@ -5,6 +5,9 @@ from godot.bindings import *
 @exposed
 class Player(KinematicBody2D):
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
 <<<<<<<
 	
 	def _enter_tree(self):
@@ -38,6 +41,12 @@ class Player(KinematicBody2D):
 		return f'Player at (x:{self._pos.x},y:{self._pos.y})'
 	
 =======
+=======
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 <<<<<<< HEAD
@@ -124,7 +133,16 @@ class Player(KinematicBody2D):
   
 >>>>>>> parent of 216e28f... Input testing in python
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
 
 >>>>>>>
+=======
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
