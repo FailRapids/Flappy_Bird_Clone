@@ -12,5 +12,4 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("Player_Jump"):
 		#apply force of Jump rember godot y-axis is inverted
 		_linear_vel.y = -Jump_Speed
-		#jank animation
-		$AnimationPlayer.play("Flap")
+		$AnimationPlayer.play("Flap",-1,1.0,false)
