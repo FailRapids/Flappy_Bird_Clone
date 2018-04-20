@@ -10,6 +10,18 @@ resource_name = "Falling"
 length = 1.0
 loop = false
 step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("BodyPivot:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 17.2476, 5.25289 ]
+}
 
 [sub_resource type="Animation" id=2]
 
@@ -123,6 +135,8 @@ _sections_unfolded = [ "Transform", "Visibility" ]
 
 [node name="CamPivot" type="Position2D" parent="." index="3"]
 
+_sections_unfolded = [ "Transform" ]
+
 [node name="Camera2D" type="Camera2D" parent="CamPivot" index="0"]
 
 anchor_mode = 1
@@ -142,12 +156,12 @@ offset_v = 0.0
 offset_h = 0.0
 drag_margin_left = 0.2
 drag_margin_top = 0.2
-drag_margin_right = 0.2
+drag_margin_right = 0.3
 drag_margin_bottom = 0.2
 editor_draw_screen = true
 editor_draw_limits = false
 editor_draw_drag_margin = true
-_sections_unfolded = [ "Editor" ]
+_sections_unfolded = [ "Drag Margin", "Editor" ]
 
 [node name="Collision" type="CollisionShape2D" parent="." index="4"]
 
