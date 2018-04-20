@@ -16,7 +16,9 @@ class Player(KinematicBody2D):
         #print(methods)
         #self._physics_process = lambda x:0
         #return
-        if self._linear_vel.x > 300:
+
+        # limit the effect of pulling the player forward
+        if self._linear_vel.x >= 300:
             self._linear_vel.x = 300
             self._GRAVITY_VEC.x = 0
         else:
@@ -26,7 +28,8 @@ class Player(KinematicBody2D):
         if Input.is_action_just_pressed("Player_Jump"):
             self._linear_vel.y = self._JUMP_SPEED
             self.get_node("AnimationPlayer").play("Flap",-1,1,False)
-            
+            es
+        
         #else:
             #self.get_node(NodePath("AnimationPlayer")).play("Idle",-1,1,False)
     
