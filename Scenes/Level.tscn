@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Scenes/Player/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scripts/Player.py" type="Script" id=2]
 
 [sub_resource type="CanvasItemMaterial" id=1]
 
@@ -23,9 +24,8 @@ extents = Vector2( 66.2916, 137.527 )
 
 [node name="Player" parent="." index="0" instance=ExtResource( 1 )]
 
-_sections_unfolded = [ "Collision", "Material" ]
-Force_Grav = Vector2( 50, 500 )
-Jump_Speed = 200
+script = ExtResource( 2 )
+_sections_unfolded = [ "Collision", "Material", "Transform", "Visibility", "Z Index", "collision" ]
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." index="1"]
 
@@ -54,8 +54,9 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = -100.0
-margin_top = -40.0
+margin_top = -33.0
 margin_right = -60.0
+margin_bottom = 7.0
 rect_scale = Vector2( 26.5727, 1 )
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false

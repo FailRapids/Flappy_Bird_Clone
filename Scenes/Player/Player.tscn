@@ -73,7 +73,7 @@ collision_layer = 1
 collision_mask = 1
 collision/safe_margin = 0.08
 script = ExtResource( 1 )
-Force_Grav = Vector2( 0, 900 )
+Force_Grav = Vector2( 40, 900 )
 Jump_Speed = 480
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="0"]
@@ -87,6 +87,7 @@ anims/Falling = SubResource( 1 )
 anims/Flap = SubResource( 2 )
 anims/Idle = SubResource( 3 )
 blend_times = [  ]
+_sections_unfolded = [ "Playback Options" ]
 
 [node name="Tween" type="Tween" parent="." index="1"]
 
