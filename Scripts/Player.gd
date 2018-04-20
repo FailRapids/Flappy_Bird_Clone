@@ -4,6 +4,7 @@ export(Vector2) var Force_Grav = Vector2(0,900)
 export(int) var Jump_Speed = 480 
 var _linear_vel = Vector2()
 var _prev_vel = Vector2()
+
 func _physics_process(delta):
 	_prev_vel = _linear_vel
 	#calc New force
