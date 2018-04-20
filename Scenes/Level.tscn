@@ -17,6 +17,7 @@ extents = Vector2( 66.2916, 137.527 )
 [node name="Player" parent="." index="0" instance=ExtResource( 1 )]
 
 _sections_unfolded = [ "Transform" ]
+Force_Grav = Vector2( 100, 900 )
 Jump_Speed = 200
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." index="1"]
