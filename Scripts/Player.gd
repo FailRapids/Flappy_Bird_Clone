@@ -1,37 +1,59 @@
 extends KinematicBody2D
-
-export(Vector2) var Force_Grav = Vector2(40,900)
+#######
+#Changed to a State Based Player
+#
+#
+########
+export(Vector2) var _Gravity = Vector2(40,600)
 export(int) var Jump_Speed = 480 
-var _linear_vel = Vector2()
-var _prev_vel = Vector2()
 
+enum STATES {Idle,Flapping,Falling,Stagger,Death}
+
+var current_state = null
+var previous_state = null
+onready var pPos = get_position()
+
+var force_on_player = Vector2()
+
+func _ready():
+	_change_state(Idle)
+	
 func _physics_process(delta):
-	_prev_vel = _linear_vel
-	#calc New force
-	if _linear_vel.x > 200:
-		_linear_vel.x = 200
-		Force_Grav.x = 0
+	
+	if force_on_player.x > 200:
+		force_on_player.x = 200
 	else:
-		Force_Grav.x = 40
-	_linear_vel += delta * Force_Grav
-	if Input.is_action_just_pressed("Player_Jump"):
-		#apply force of Jump rember godot y-axis is inverted
-		_linear_vel.y = -Jump_Speed
-		$AnimationPlayer.play("Flap",-1,1.0,false)
+		_Gravity.x = 40
+	force_on_player += delta * _Gravity
+	match current_state:
+		Idle:
+			if Input.is_action_just_pressed("Player_Jump"):
+				force_on_player.y = -Jump_Speed
+				_change_state(Flapping)
+			elif (pPos.y < get_position().y) and $AnimationPlayer.get_current_animation_position() > .5:
+					_change_state(Falling)
+		Flapping:
+			if $AnimationPlayer.get_current_animation() == "Flapping" and $AnimationPlayer.get_current_animation_position() > .25:
+				_change_state(Idle)
+		Falling:
+			_change_state(Idle)
+			
+	pPos = get_position()
+	force_on_player = move_and_slide(force_on_player)
 
-	elif _prev_vel.y < _linear_vel.y: 
-		set_rotation(clamp(_linear_vel.angle(),0,35))
-
-	if OS.is_debug_build():
-		if Input.is_action_just_pressed("Player_Right"):
-			self.Force_Grav.x = 100
-		elif Input.is_action_just_pressed("Player_Left"):
-			self.Force_Grav.x = -100
-		if Input.is_action_just_pressed("DEBUG_GRAV_SWITCH_Y"):
-			print("Invert Y Grav")
-			Force_Grav = Force_Grav.reflect(Vector2(1,0))
-		elif Input.is_action_just_pressed("DEBUG_GRAV_SWITCH_X"):
-			print("Invert X Grav")
-			Force_Grav = Force_Grav.reflect(Vector2(0,1))
-	_linear_vel = move_and_slide(_linear_vel)
+func _change_state(new_state):
+	previous_state = current_state
+	current_state = new_state
+	match new_state:
+		Idle:
+			return
+		Flapping:
+			$AnimationPlayer.play("Flapping")
+		Falling:
+			$AnimationPlayer.play("Falling")
+		Stagger:
+			$AnimationPlayer.play("Stagger")
+		Death:
+			$AnimationPlayer.play("Death")
+			queue_free()
 
