@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Player/body.png" type="Texture" id=2]
@@ -20,14 +20,14 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.5 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ 0.0, 35.0 ]
+"values": [ 0.0, 15.0 ]
 }
 
 [sub_resource type="Animation" id=2]
 
 resource_name = "Flapping"
 length = 1.0
-loop = false
+loop = true
 step = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("BodyPivot:rotation_degrees")
@@ -84,49 +84,66 @@ tracks/0/keys = {
 "update": 0,
 "values": [ Color( 1, 1, 1, 1 ) ]
 }
-
-[sub_resource type="Animation" id=5]
-
-resource_name = "Stagger"
-length = 1.0
-loop = false
-step = 0.1
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.3, 0.5, 0.8 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
-"update": 0,
-"values": [ Vector2( 0, 0 ), Vector2( -20, -12 ), Vector2( -42, 5.66244e-06 ), Vector2( -56, 6.00001 ) ]
-}
 tracks/1/type = "value"
-tracks/1/path = NodePath(".:rotation_degrees")
+tracks/1/path = NodePath("BodyPivot:rotation_degrees")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.2, 0.3, 0.5, 0.6, 0.8 ),
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+
+[sub_resource type="Animation" id=5]
+
+resource_name = "Stagger"
+length = 1.2
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("BodyPivot:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.7, 0.9, 1.1 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ 0.0, -5.3, 0.0, 5.5, 0.0, 5.5 ]
+"values": [ 0.0, 10.0, 0.0, 20.0, 25.0, 0.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("BodyPivot:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.5, 0.7, 1.1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0.381216 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.298353 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.099451 ), Color( 1, 1, 1, 0.298353 ), Color( 1, 1, 1, 1 ) ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath(".:modulate")
+tracks/2/path = NodePath("BodyPivot:modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.6, 0.7, 0.8, 1 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 1.1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Color( 0.945312, 1, 1, 1 ), Color( 0.964844, 0.760056, 0.719864, 0.292824 ), Color( 0.945312, 1, 1, 1 ), Color( 0.964844, 0.760056, 0.719864, 0.292824 ), Color( 1, 1, 1, 1 ), Color( 0.945312, 1, 1, 1 ), Color( 0.964844, 0.760056, 0.719864, 0.292824 ), Color( 1, 1, 1, 1 ), Color( 0.945312, 0.701599, 0.701599, 0.497255 ) ]
+"values": [ Color( 1, 1, 1, 1 ), Color( 0.9375, 0.065918, 0.065918, 1 ), Color( 1, 1, 1, 1 ), Color( 0.9375, 0.065918, 0.065918, 1 ), Color( 1, 1, 1, 1 ) ]
 }
+
+[sub_resource type="RectangleShape2D" id=6]
+
+custom_solver_bias = 0.0
+extents = Vector2( 34.2532, 25.644 )
 
 [sub_resource type="RectangleShape2D" id=4]
 
@@ -135,15 +152,12 @@ extents = Vector2( 22.734, 14.4303 )
 
 [node name="Player" type="KinematicBody2D" index="0"]
 
-modulate = Color( 0.945312, 0.701599, 0.701599, 0.497255 )
-position = Vector2( -56, 6.00001 )
-rotation = 0.0959931
 input_pickable = false
 collision_layer = 1
 collision_mask = 1
 collision/safe_margin = 0.08
 script = ExtResource( 1 )
-_sections_unfolded = [ "Transform", "Visibility" ]
+_sections_unfolded = [ "Collision", "Transform", "Visibility" ]
 _Gravity = Vector2( 40, 600 )
 Jump_Speed = 480
 
@@ -170,16 +184,31 @@ playback/active = false
 playback/repeat = false
 playback/speed = 1.0
 
-[node name="BodyPivot" type="Position2D" parent="." index="2"]
+[node name="Area2D" type="Area2D" parent="." index="2"]
 
-_sections_unfolded = [ "Transform", "Z Index" ]
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
+
+shape = SubResource( 6 )
+
+[node name="BodyPivot" type="Position2D" parent="." index="3"]
+
+_sections_unfolded = [ "Transform", "Visibility", "Z Index" ]
 
 [node name="Body" type="Sprite" parent="BodyPivot" index="0"]
 
+modulate = Color( 1, 1, 1, 0.381216 )
 position = Vector2( 0, 0.0438387 )
 scale = Vector2( 1, 0.327698 )
 texture = ExtResource( 2 )
-_sections_unfolded = [ "Transform" ]
+_sections_unfolded = [ "Material", "Transform", "Visibility" ]
 
 [node name="WingPivot" type="Position2D" parent="BodyPivot" index="1"]
 
@@ -193,7 +222,7 @@ scale = Vector2( 0.532676, 0.426353 )
 texture = ExtResource( 3 )
 _sections_unfolded = [ "Transform", "Visibility" ]
 
-[node name="CamPivot" type="Position2D" parent="." index="3"]
+[node name="CamPivot" type="Position2D" parent="." index="4"]
 
 _sections_unfolded = [ "Transform" ]
 
@@ -223,8 +252,10 @@ editor_draw_limits = false
 editor_draw_drag_margin = true
 _sections_unfolded = [ "Drag Margin", "Editor" ]
 
-[node name="Collision" type="CollisionShape2D" parent="." index="4"]
+[node name="Collision" type="CollisionShape2D" parent="." index="5"]
 
 shape = SubResource( 4 )
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
 
 

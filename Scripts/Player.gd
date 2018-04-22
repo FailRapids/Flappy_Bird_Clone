@@ -24,20 +24,28 @@ func _physics_process(delta):
 		force_on_player.x = 200
 	else:
 		_Gravity.x = 40
+		
 	force_on_player += delta * _Gravity
+
 	match current_state:
 		Idle:
 			if Input.is_action_just_pressed("Player_Jump"):
 				force_on_player.y = -Jump_Speed
 				_change_state(Flapping)
-			elif (pPos.y < get_position().y) and $AnimationPlayer.get_current_animation_position() > .5:
-					_change_state(Falling)
+			
 		Flapping:
-			if $AnimationPlayer.get_current_animation() == "Flapping" and $AnimationPlayer.get_current_animation_position() > .25:
-				_change_state(Idle)
+			if (pPos.y < get_position().y) and $AnimationPlayer.get_current_animation_position() > .5:
+				_change_state(Falling)
 		Falling:
 			_change_state(Idle)
-			
+		Stagger:
+			if not($AnimationPlayer.is_playing()):
+				force_on_player.x = 100
+				force_on_player.y = 0
+				_change_state(Idle)
+			else:
+				force_on_player.x = force_on_player.x - 10*delta
+				
 	pPos = get_position()
 	force_on_player = move_and_slide(force_on_player)
 
@@ -53,7 +61,12 @@ func _change_state(new_state):
 			$AnimationPlayer.play("Falling")
 		Stagger:
 			$AnimationPlayer.play("Stagger")
+			force_on_player.x = -200
+			force_on_player.y = -Jump_Speed
 		Death:
 			$AnimationPlayer.play("Death")
 			queue_free()
 
+func _on_Area2D_body_entered(body):
+	if body.get_name() == "Pipe":
+		_change_state(Stagger)
