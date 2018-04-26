@@ -5,33 +5,62 @@ from godot.vector2 import Vector2
 
 @exposed
 class Player(KinematicBody2D):
-    _GRAVITY_VEC = Vector2(100,900)#pix/sec
-    _JUMP_SPEED = -480
-    _linear_vel = Vector2(0,0)
-    #methods = [x for x in dir(KinematicBody2D) if x.startswith('_')]
-    #print("{}".format(methods))
+	"""
+		Attributes: 
+			GRAVITY (Vector2): Describes the effects of gravity on the Player 
+			JUMP_SPEED (int): Force of Players Jump in pix/sec
+		Bugs:
+			Cant Call any Methods on $AnimationPlayer
+			Cant Recive Signals from up the tree
+		Notes:
+		
+	""" 
+	_JUMP_SPEED  = 480
+	_GRAVITY = Vector2(0,900) 
+	
 
-    def _physics_process(self,delta):
-        #methods = [x for x in dir(self) if x.startswith('_')]
-        #print(methods)
-        #self._physics_process = lambda x:0
-        #return
+	def _ready(self):
+		self._force_on_player = Vector2(0,0)
+		self._pPos = self.get_position()
+		self.set_physics_process(False)
 
-        # limit the effect of pulling the player forward
-        if self._linear_vel.x >= 300:
-            self._linear_vel.x = 300
-            self._GRAVITY_VEC.x = 0
-        else:
-            self._GRAVITY_VEC.x = 100
-        self._linear_vel += self._GRAVITY_VEC * delta
-        self._linear_vel = self.move_and_slide(self._linear_vel,Vector2(0,-1),0,4,0.78)
-        if Input.is_action_just_pressed("Player_Jump"):
-            self._linear_vel.y = self._JUMP_SPEED
-            self.get_node("AnimationPlayer").play("Flap",-1,1,False)
-            es
-        
-        #else:
-            #self.get_node(NodePath("AnimationPlayer")).play("Idle",-1,1,False)
-    
-    def __repr__(self):
-        return f'Player:{self.get_position()}:{self._linear_vel.y}:{self._JUMP_SPEED}'
+	def _process(self,delta):
+		if Input.is_action_just_pressed("Player_Jump"):
+			self.set_physics_process(True)
+			self.set_process(False)
+		
+	def _physics_process(self,delta):
+		self._force_on_player += self._GRAVITY * delta 
+		if Input.is_action_just_pressed("Player_Jump") and self.is_Falling():
+			self._force_on_player.y = self.JUMP_SPEED
+			self.get_node("AnimationPlayer").play("Flapping",-1,1,False)
+		else:
+			 pass
+		self._pPos = self.get_position()
+		self._force_on_player = self.move_and_slide(self._force_on_player,Vector2(0,0),5,4,.78)
+
+
+	def is_Falling(self):
+		return self._pPos.y < self.get_position().y
+
+	@export(Vector2)
+	@property
+	def GRAVITY(self):
+		return self._GRAVITY
+
+	@export(int)
+	@property
+	def JUMP_SPEED(self):
+		return -self._JUMP_SPEED
+		
+		#when a physics body enters player HitBox
+	#kill him
+	def _on_HitBox_body_entered(self,body):
+		if body.is_in_group("Pipes"):
+			#self.get_node("AnimationPlayer").play("Stagger")
+			self.queue_free()
+	#when the player leaves levels bounds	
+	def _on_World_body_exited(self,body):
+		if body == self:
+			#self.get_node("AnimationPlayer").play("Death")
+			self.queue_free()

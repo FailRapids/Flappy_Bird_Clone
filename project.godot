@@ -38,6 +38,12 @@ DEBUG_GRAV_SWITCH_Y=[ Object(InputEventKey,"resource_local_to_scene":false,"reso
 , Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777234,"unicode":0,"echo":false,"script":null)
  ]
 
+[physics]
+
+2d/default_gravity=0
+2d/default_linear_damp=0.0
+2d/default_angular_damp=0
+
 [rendering]
 
 environment/default_environment="res://default_env.tres"
