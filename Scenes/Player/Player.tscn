@@ -176,7 +176,7 @@ extents = Vector2( 34.2532, 25.644 )
 custom_solver_bias = 0.0
 extents = Vector2( 22.734, 14.4303 )
 
-[node name="Player" type="KinematicBody2D" index="0"]
+[node name="Player" type="KinematicBody2D"]
 
 input_pickable = false
 collision_layer = 1
@@ -247,7 +247,7 @@ _sections_unfolded = [ "Transform" ]
 position = Vector2( 189.984, -1.36038 )
 anchor_mode = 1
 rotating = false
-current = true
+current = false
 zoom = Vector2( 1, 1 )
 limit_left = -10000000
 limit_top = -10000000
@@ -272,6 +272,7 @@ _sections_unfolded = [ "Drag Margin", "Editor", "Offset", "Smoothing" ]
 [node name="Collision" type="CollisionShape2D" parent="." index="4"]
 
 shape = SubResource( 6 )
+disabled = true
 
 [node name="Position2D" type="Position2D" parent="." index="5"]
 
@@ -279,6 +280,7 @@ position = Vector2( -310.654, -288.941 )
 
 [node name="Control" type="Control" parent="Position2D" index="0"]
 
+visible = false
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0

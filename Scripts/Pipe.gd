@@ -4,7 +4,7 @@ extends KinematicBody2D
 
 func _ready():
 	get_node("../../../World").connect("body_exited",self,"_on_World_body_exited")
-	
+	add_to_group(get_parent().group)
 	
 func _physics_process(delta):
 	move_and_slide(Vector2(-200,0))
