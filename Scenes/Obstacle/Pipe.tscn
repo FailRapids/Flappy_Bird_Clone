@@ -81,10 +81,10 @@ _sections_unfolded = [ "Visibility" ]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." index="3"]
 build_mode = 0
-polygon = PoolVector2Array( 0, 380, 80, 380, 80, -100, 0, -100 )
+polygon = PoolVector2Array( 10, 370, 70, 370, 70, -90, 10, -90 )
 
 [node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="." index="4"]
 position = Vector2( 0, 620 )
 build_mode = 0
-polygon = PoolVector2Array( 0, 380, 80, 380, 80, -100, 0, -100 )
+polygon = PoolVector2Array( 10, 370, 70, 370, 70, -90, 10, -90 )
 

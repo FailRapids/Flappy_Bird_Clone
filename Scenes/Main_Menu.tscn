@@ -21,6 +21,8 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_top = 2.0
+margin_bottom = 2.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 0
@@ -44,7 +46,15 @@ region_enabled = true
 region_rect = Rect2( 292, 0, 168, 56 )
 _sections_unfolded = [ "Region" ]
 
-[node name="Button_Stack" type="Sprite" parent="Control" index="2"]
+[node name="Sprite" type="Sprite" parent="Control" index="2"]
+position = Vector2( 240, 148 )
+scale = Vector2( 5.32584, 8 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 351, 91, 89, 24 )
+_sections_unfolded = [ "Region" ]
+
+[node name="Button_Stack" type="Sprite" parent="Control" index="3"]
 position = Vector2( 140, 430 )
 scale = Vector2( 3, 3 )
 texture = ExtResource( 2 )
