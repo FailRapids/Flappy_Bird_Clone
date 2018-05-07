@@ -4,7 +4,7 @@
 [ext_resource path="res://Assets/59894.png" type="Texture" id=2]
 [ext_resource path="res://Scripts/Pipe/Tracker.gd" type="Script" id=3]
 
-[node name="Pipes" type="KinematicBody2D" index="0"]
+[node name="Pipes" type="KinematicBody2D"]
 
 input_pickable = false
 collision_layer = 1
@@ -16,6 +16,7 @@ speed = 50
 
 [node name="Top" type="Area2D" parent="." index="0"]
 
+editor/display_folded = true
 position = Vector2( 0, -100 )
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
@@ -59,10 +60,11 @@ _sections_unfolded = [ "Material", "Visibility" ]
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Tracker" index="0"]
 
 build_mode = 0
-polygon = PoolVector2Array( 0, 0, 0, 140, 0, 140, 0, 140, 0, 140, 80, 140, 80, 0 )
+polygon = PoolVector2Array( 10, -10, 10, 150, 70, 150, 70, -10 )
 
 [node name="Bottom" type="Area2D" parent="." index="2"]
 
+editor/display_folded = true
 position = Vector2( 0, 520 )
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )

@@ -3,18 +3,18 @@
 [ext_resource path="res://Scripts/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Assets/59894.png" type="Texture" id=2]
 
-
-[sub_resource type="RectangleShape2D" id=1]
-
-custom_solver_bias = 0.0
-extents = Vector2( 5, 3.25 )
-
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="CircleShape2D" id=1]
 
 custom_solver_bias = 0.0
-extents = Vector2( 8.25, 5.25 )
+radius = 4.75
 
-[node name="Player" type="KinematicBody2D" index="0"]
+[sub_resource type="CircleShape2D" id=2]
+
+custom_solver_bias = 0.0
+radius = 9.25
+
+[node name="Player" type="KinematicBody2D"]
+
 scale = Vector2( 4, 4 )
 input_pickable = false
 collision_layer = 1
@@ -26,17 +26,22 @@ _Gravity = Vector2( 0, 900 )
 Jump_Speed = 400
 
 [node name="Sprite" type="Sprite" parent="." index="0"]
+
 texture = ExtResource( 2 )
 region_enabled = true
 region_rect = Rect2( 31, 491, 17, 12 )
 _sections_unfolded = [ "Region" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
+
 shape = SubResource( 1 )
 
 [node name="CamPivot" type="Position2D" parent="." index="2"]
 
+editor/display_folded = true
+
 [node name="Camera2D" type="Camera2D" parent="CamPivot" index="0"]
+
 anchor_mode = 1
 rotating = false
 current = false
@@ -62,6 +67,8 @@ editor_draw_drag_margin = true
 _sections_unfolded = [ "Drag Margin", "Editor" ]
 
 [node name="Area2D" type="Area2D" parent="." index="3"]
+
+editor/display_folded = true
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
@@ -71,5 +78,7 @@ audio_bus_override = false
 audio_bus_name = "Master"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
+
 shape = SubResource( 2 )
+
 
