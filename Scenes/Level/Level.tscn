@@ -1,15 +1,34 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://Scripts/Pipe/Spawn.gd" type="Script" id=1]
-[ext_resource path="res://Scenes/Pipe/Pipe.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Assets/59894.png" type="Texture" id=3]
+[ext_resource path="res://Assets/59894.png" type="Texture" id=1]
+[ext_resource path="res://Scripts/Pipe/Spawn.gd" type="Script" id=2]
+[ext_resource path="res://Scenes/Pipe/Pipe.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Player/Player.tscn" type="PackedScene" id=4]
 
-[node name="Level" type="Node2D" index="0"]
+[node name="Level" type="Node2D"]
 
 _sections_unfolded = [ "Transform" ]
 
-[node name="World" type="Area2D" parent="." index="0"]
+[node name="Background" type="CanvasLayer" parent="." index="0"]
+
+editor/display_folded = true
+layer = -1
+offset = Vector2( 0, 0 )
+rotation = 0.0
+scale = Vector2( 1, 1 )
+transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+
+[node name="BG" type="Sprite" parent="Background" index="0"]
+
+scale = Vector2( 3.33333, 2.5 )
+z_index = -1
+texture = ExtResource( 1 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 0, 0, 144, 256 )
+_sections_unfolded = [ "Offset", "Region", "Transform", "Z Index" ]
+
+[node name="World" type="Area2D" parent="." index="1"]
 
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
@@ -18,87 +37,69 @@ linear_damp = 0.0
 angular_damp = 1.0
 audio_bus_override = false
 audio_bus_name = "Master"
+_sections_unfolded = [ "Transform" ]
 __meta__ = {
 "_edit_group_": true
 }
 
-[node name="Spawn" type="Position2D" parent="World" index="0"]
-
-position = Vector2( 490, -140 )
-script = ExtResource( 1 )
-_sections_unfolded = [ "Transform" ]
-Pipe = ExtResource( 2 )
-start_x = 490
-
-[node name="Pipe" parent="World/Spawn" index="0" instance=ExtResource( 2 )]
-
-position = Vector2( 800, 10 )
-_sections_unfolded = [ "Collision", "Linear", "Transform" ]
-
-[node name="Spawn2" type="Position2D" parent="World" index="1"]
-
-position = Vector2( 900, -130 )
-script = ExtResource( 1 )
-_sections_unfolded = [ "Transform" ]
-Pipe = ExtResource( 2 )
-start_x = 900
-
-[node name="Pipe" parent="World/Spawn2" index="0" instance=ExtResource( 2 )]
-
-position = Vector2( 10, 0 )
-_sections_unfolded = [ "Collision", "Linear", "Transform" ]
-
-[node name="Spawn3" type="Position2D" parent="World" index="2"]
-
-position = Vector2( 1290, -130 )
-script = ExtResource( 1 )
-_sections_unfolded = [ "Transform" ]
-Pipe = ExtResource( 2 )
-start_x = 1330
-
-[node name="Pipe" parent="World/Spawn3" index="0" instance=ExtResource( 2 )]
-
-position = Vector2( -740, 40 )
-_sections_unfolded = [ "Collision", "Linear", "Transform" ]
-
-[node name="BG" type="Sprite" parent="World" index="3"]
-
-scale = Vector2( 3.33333, 2.5 )
-z_index = -1
-texture = ExtResource( 3 )
-centered = false
-region_enabled = true
-region_rect = Rect2( 0, 0, 144, 256 )
-_sections_unfolded = [ "Offset", "Region", "Transform", "Z Index" ]
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="World" index="4"]
+[node name="World_Area" type="CollisionPolygon2D" parent="World" index="0"]
 
 modulate = Color( 0.0220032, 0.712967, 0.804688, 1 )
 build_mode = 0
 polygon = PoolVector2Array( -30, 0, -30, 490, 480, 490, 480, 0 )
 _sections_unfolded = [ "Visibility" ]
 
-[node name="Sprite" type="Sprite" parent="World" index="5"]
+[node name="Spawn" type="Position2D" parent="World" index="1"]
 
+editor/display_folded = true
+position = Vector2( 490, -140 )
+script = ExtResource( 2 )
+_sections_unfolded = [ "Transform" ]
+Pipe = ExtResource( 3 )
+
+[node name="Timer" type="Timer" parent="World/Spawn" index="0"]
+
+process_mode = 1
+wait_time = 5.0
+one_shot = false
+autostart = false
+
+[node name="Ground" type="StaticBody2D" parent="World" index="2"]
+
+editor/display_folded = true
 position = Vector2( 240, 565 )
 scale = Vector2( 2.85714, 2.67857 )
-texture = ExtResource( 3 )
+input_pickable = false
+collision_layer = 2
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+_sections_unfolded = [ "Collision", "Material", "Visibility" ]
+
+[node name="Sprite" type="Sprite" parent="World/Ground" index="0"]
+
+texture = ExtResource( 1 )
 region_enabled = true
 region_rect = Rect2( 292, 0, 168, 56 )
 _sections_unfolded = [ "Region", "Transform", "Visibility" ]
 
-[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="World" index="6"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="World/Ground" index="1"]
 
-modulate = Color( 0.0799067, 0.992188, 0.0271301, 1 )
 build_mode = 0
-polygon = PoolVector2Array( 0, 490, 480, 490, 480, 640, 0, 640 )
-_sections_unfolded = [ "Visibility" ]
+polygon = PoolVector2Array( -84.0001, -28, 84.0001, -28, 84.0001, 28, -84.0001, 28 )
+disabled = true
 
-[node name="Player" parent="." index="1" instance=ExtResource( 4 )]
+[node name="Player" parent="World" index="3" instance=ExtResource( 4 )]
 
 position = Vector2( 142, 320 )
 scale = Vector2( 3, 3 )
+collision_layer = 3
 _sections_unfolded = [ "Collision", "Pickable", "Transform", "Visibility" ]
 _Gravity = Vector2( 0, 1200 )
+Jump_Speed = 350
+
+[connection signal="timeout" from="World/Spawn/Timer" to="World/Spawn" method="_on_Timer_timeout"]
 
 

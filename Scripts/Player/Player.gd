@@ -13,6 +13,8 @@ func _ready():
 func _process(delta):
 	if Input.is_action_just_pressed("Player_Jump"):
 		set_physics_process(true)
+		get_parent().get_node("Spawn")._on_Timer_timeout()
+		get_parent().get_node("Spawn").start()
 		set_process(false)
 
 func _physics_process(delta):
